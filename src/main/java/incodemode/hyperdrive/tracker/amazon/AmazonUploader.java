@@ -11,8 +11,9 @@ public class AmazonUploader {
 	public void upload(TorrentHolder torrentHolder){
 		Runtime rt = Runtime.getRuntime();
 		try {
-			System.out.println("sudo -u mercenario -i acd_cli upload -f -x 1 '"+torrentHolder.parentLocationFile+"/" + torrentHolder.name + "' '" + torrentHolder.amazonPath+"'");
-			String[] cmd = new String[]{"sudo", "-u", "mercenario", "-i", "acd_cli", "upload", "-f", "-x", "1", torrentHolder.parentLocationFile + "/" + torrentHolder.name, torrentHolder.amazonPath};
+			String uploadedFilePath = torrentHolder.getUploadedFilePath();
+			System.out.println("sudo -u mercenario -i acd_cli upload -f -x 1 '"+ uploadedFilePath + "' '" + torrentHolder.amazonPath+"'");
+			String[] cmd = new String[]{"sudo", "-u", "mercenario", "-i", "acd_cli", "upload", "-f", "-x", "1", uploadedFilePath, torrentHolder.amazonPath};
 			Process proc = rt.exec(cmd);
 			
 			
@@ -40,10 +41,10 @@ public class AmazonUploader {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (InterruptedException e) {
+		} /*catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 }

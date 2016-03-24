@@ -78,4 +78,11 @@ public class TorrentHolder extends Thread{
 		
 	}
 	
+	public String getUploadedFilePath(){
+		return parentLocationFile +"/" + name;
+	}
+	public File getUploadedFile(){
+		return new File(getUploadedFilePath());
+	}
+	
 }
